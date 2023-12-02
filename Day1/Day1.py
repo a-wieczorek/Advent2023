@@ -11,14 +11,13 @@ FILTER = {
     }
 
 with open('input.txt', 'r') as f:
-    lines = f.read().split('\n')
-    lines = [line for line in lines if line]
+    lines = [line for line in f.read().split('\n') if line]
 
-#Part1
+# Part 1
 numbers = [''.join(filter(str.isdigit, line)) for line in lines]
 print(sum([int(number[0]+number[-1]) for number in numbers if number]))
 
-#Part2
+# Part 2
 numbers = []
 for line in lines:
     startDigits = ''.join(filter(str.isdigit, line))
