@@ -1,4 +1,4 @@
-FILTER = {
+FILTERS = {
         'one': '1',
         'two': '2',
         'three': '3',
@@ -26,8 +26,8 @@ for line in lines:
     reversedLine = line[::-1]
     lastDigit = startDigits[-1]
     lastDigitIndex = reversedLine.index(startDigits[-1])
-    for key in FILTER:
-        newLine = line.replace(key, FILTER[key])
+    for key in FILTERS:
+        newLine = line.replace(key, FILTERS[key])
         digits = ''.join(filter(str.isdigit, newLine))
         if int(newLine.index(digits[0])) < firstDigitIndex:
             firstDigit = digits[0]
