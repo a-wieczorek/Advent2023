@@ -38,6 +38,6 @@ for game in lines:
     for aSet in game.split('; '):
         for subset in aSet.split(', '):
             amount, color = int(subset.split(' ')[0]), subset.split(' ')[1]
-            amounts[color] = amount if amount>amounts[color] else amounts[color]
+            amounts[color] = amount if amount > amounts[color] else amounts[color]
     powers.append(prod(amounts.values()))
 print(sum(powers))
