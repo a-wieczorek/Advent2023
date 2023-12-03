@@ -31,6 +31,7 @@ class NumberData:
         self.numberIndices = []
     number: str
     numberIndices: list
+    isFinal: bool = False
 
 
 class AsteriskSymbol:
@@ -42,11 +43,9 @@ class AsteriskSymbol:
 
 
 lines = [[y for y in x] for x in lines]
-shadowList = [[0 for _ in range(len(lines[0]))] for _ in range(len(lines))]
 
 allNumbersData = []
 allAsterisks = []
-
 numberData = NumberData()
 for rowIndex, row in enumerate(lines):
     if numberData.number:
@@ -57,7 +56,6 @@ for rowIndex, row in enumerate(lines):
             if numberData.number:
                 allNumbersData.append(numberData)
                 numberData = NumberData()
-                continue
             continue
         numberData.number += col
         numberData.numberIndices.append([rowIndex, colIndex])
@@ -67,13 +65,10 @@ for rowIndex, row in enumerate(lines):
                           0 <= indexToCheck[0] <= len(lines) - 1 and  # row index condition
                           0 <= indexToCheck[1] <= len(lines[0]) - 1]  # column index condition
         if any([check_index(indexToCheck, lines) for indexToCheck in indicesToCheck]):
-            shadowList[rowIndex][colIndex] = 1
+            numberData.isFinal = True
 
-finalNumbers = []
-for numberData in allNumbersData:
-    if any([shadowList[numberIndex[0]][numberIndex[1]] == 1 for numberIndex in numberData.numberIndices]):
-        finalNumbers.append(numberData)
 # Part 1
+finalNumbers = [numberData for numberData in allNumbersData if numberData.isFinal]
 print(sum([int(num.number) for num in finalNumbers]))
 
 # Part 2
