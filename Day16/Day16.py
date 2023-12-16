@@ -123,8 +123,3 @@ for startingBeam in allStarting:
     allWalked = set((coord[0], coord[1]) for coord in finishedBeams[0].path)
     finalValues.append(len(allWalked))
 print(max(finalValues))
-
-
-
-
-
